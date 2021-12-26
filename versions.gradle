@@ -1,0 +1,44 @@
+ext {
+
+    // App
+    compileSdkVersion = 31
+    minSdkVersion = 21
+    targetSdkVersion = 31
+    appVersionCode = 1
+    appVersionName = "1.0"
+
+    // libs
+    daggerVersion = '2.40.5'
+    retrofit2Version = "2.9.0"
+    rxJavaVersion = '2.2.21'
+    rxAndroidVersion = "2.1.1"
+
+    // Android UI
+    appcompatVersion = '1.4.0'
+    materialVersion = '1.4.0'
+    constraintlayoutVersion = "2.1.2"
+    recyclerviewVersion = '1.2.1'
+    cardViewVersion = "1.0.0"
+
+    // Custom UI
+    circularImageViewVersion = "3.2.0"
+
+    // Image loading
+    glideVersion = "4.8.0"
+
+    // testing
+    junitVersion = '4.13.2'
+    testRunnerVersion = '1.4.0'
+    testRulesVersion = '1.4.0'
+    espressoVersion = "3.4.0"
+    mockitoVersion = '4.2.0'
+
+    // Other
+    javaxInjectVersion = "1"
+
+
+    // Architecture components
+    roomVersion = "2.4.0"
+    archCoreVersion = "2.0.0"
+    lifecycleVersion = '2.4.0'
+}
