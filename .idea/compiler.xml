@@ -6,6 +6,7 @@
       <module name="AndroidTask.data" target="11" />
       <module name="AndroidTask.local" target="11" />
       <module name="AndroidTask.presentation" target="11" />
+      <module name="AndroidTask.remote" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

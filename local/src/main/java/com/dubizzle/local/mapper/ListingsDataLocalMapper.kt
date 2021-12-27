@@ -5,7 +5,7 @@ import com.dubizzle.local.model.ListingsLocal
 import javax.inject.Inject
 
 
-class ListingsLocalMapper @Inject constructor() : Mapper<ListingsData, ListingsLocal> {
+class ListingsDataLocalMapper @Inject constructor() : Mapper<ListingsData, ListingsLocal> {
 
     override fun from(e: ListingsLocal): ListingsData {
         return ListingsData(
