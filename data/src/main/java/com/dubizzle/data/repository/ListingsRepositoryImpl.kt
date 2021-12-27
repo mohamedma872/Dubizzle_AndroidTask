@@ -12,9 +12,9 @@ class ListingsRepositoryImpl @Inject constructor(
     private val localDataSource: LocalDataSource,
     private val remoteDataSource: RemoteDataSource
 ) : ListingsRepository {
-    override fun getListings(): Observable<List<ListingsEntity>> {
+    override fun getListings(limit: Int): Observable<List<ListingsEntity>> {
 
-        val localListings = localDataSource.getListings()
+        val localListings = localDataSource.getListings(limit)
             .map { listings ->
                 listings.map { listingsMapper.from(it) }
             }

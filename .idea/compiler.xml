@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="1.7">
       <module name="AndroidTask.app" target="11" />
       <module name="AndroidTask.data" target="11" />
+      <module name="AndroidTask.local" target="11" />
       <module name="AndroidTask.presentation" target="11" />
     </bytecodeTargetLevel>
   </component>

@@ -13,12 +13,15 @@ class GetListingsTask @Inject constructor(
     private val listingsRepository: ListingsRepository,
     @Background backgroundScheduler: Scheduler,
     @Foreground foregroundScheduler: Scheduler
-) : ObservableUseCase<List<ListingsEntity>>(
+) : ObservableUseCase<List<ListingsEntity>, GetListingsTask.Params>(
     backgroundScheduler,
     foregroundScheduler
 ) {
-    override fun generateObservable(): Observable<List<ListingsEntity>> {
-
-        return listingsRepository.getListings()
+    override fun generateObservable(input: Params?): Observable<List<ListingsEntity>> {
+        if (input == null) {
+            throw IllegalArgumentException("GetListingsTask parameter can't be null")
+        }
+        return listingsRepository.getListings(input.limit)
     }
+    data class Params( val limit: Int)
 }

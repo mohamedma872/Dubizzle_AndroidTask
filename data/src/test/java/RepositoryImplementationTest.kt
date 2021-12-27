@@ -3,7 +3,6 @@ import com.dubizzle.data.repository.ListingsRepositoryImpl
 import com.dubizzle.data.repository.LocalDataSource
 import com.dubizzle.data.repository.RemoteDataSource
 import com.dubizzle.domain.repository.ListingsRepository
-import io.reactivex.Completable
 import io.reactivex.Observable
 import org.junit.Before
 import org.junit.Test
@@ -40,15 +39,15 @@ class RepositoryImplementationTest {
 
     @Test
     fun test_getListings_local_remote_interactions() {
-
+        val limit = 20
         val listingsData = TestDataGenerator.generateListings()
 
         Mockito.`when`(remoteDataSource.getListings())
             .thenReturn(Observable.just(listingsData))
-        Mockito.`when`(localDataSource.getListings())
+        Mockito.`when`(localDataSource.getListings(limit))
             .thenReturn(Observable.just(listingsData))
 
-        val testSubscriber = listingsRepository.getListings().test()
+        val testSubscriber = listingsRepository.getListings(limit).test()
 
         testSubscriber.assertSubscribed()
             .assertValues(
@@ -66,14 +65,16 @@ class RepositoryImplementationTest {
 
     @Test
     fun test_getListings_remote_error() {
+        val limit = 20
+
         val listingsData = TestDataGenerator.generateListings()
 
         Mockito.`when`(remoteDataSource.getListings())
             .thenReturn(Observable.error(Throwable()))
-        Mockito.`when`(localDataSource.getListings())
+        Mockito.`when`(localDataSource.getListings(limit))
             .thenReturn(Observable.just(listingsData))
 
-        val testSubscriber = listingsRepository.getListings().test()
+        val testSubscriber = listingsRepository.getListings(limit).test()
 
         testSubscriber.assertSubscribed()
             .assertValue { transactions ->
@@ -84,6 +85,6 @@ class RepositoryImplementationTest {
             .assertComplete()
 
         Mockito.verify(localDataSource, times(1))
-            .getListings()
+            .getListings(limit)
     }
 }

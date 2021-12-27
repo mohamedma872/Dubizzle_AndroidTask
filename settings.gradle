@@ -3,7 +3,6 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        jcenter() // Warning: this repository is going to shut down soon
     }
 }
 rootProject.name = "AndroidTask"
@@ -11,3 +10,4 @@ include ':app'
 include ':domain'
 include ':presentation'
 include ':data'
+include ':local'

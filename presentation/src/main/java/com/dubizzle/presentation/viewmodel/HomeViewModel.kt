@@ -1,12 +1,13 @@
 package com.dubizzle.presentation.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.toLiveData
 import com.dubizzle.domain.entities.ListingsEntity
 import com.dubizzle.domain.usecases.GetListingsTask
 import com.dubizzle.presentation.mapper.Mapper
 import com.dubizzle.presentation.model.Listings
 import com.dubizzle.presentation.model.Resource
-import com.dubizzle.presentation.model.Status
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable

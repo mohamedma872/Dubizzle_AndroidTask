@@ -10,7 +10,7 @@ data class Pagination(
 )
 
 data class ListingsEntity(
-    val uid: String? = null,
+    val uid: String,
 
     val price: String? = null,
 
