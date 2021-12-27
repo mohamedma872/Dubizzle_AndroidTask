@@ -4,5 +4,5 @@ import com.dubizzle.domain.entities.ListingsEntity
 import io.reactivex.Observable
 
 interface ListingsRepository {
-    fun getListings(): Observable<List<ListingsEntity>>
+    fun getListings(limit: Int): Observable<List<ListingsEntity>>
 }

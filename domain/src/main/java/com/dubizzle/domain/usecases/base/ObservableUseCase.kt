@@ -10,14 +10,14 @@ ObservableUseCase use two generic types
 @return the value returned by the method
 @throws what kind of exception does this method throw
  */
-abstract class ObservableUseCase<T> constructor(
+abstract class ObservableUseCase<T, in Input> constructor(
     private val backgroundScheduler: Scheduler,
     private val foregroundScheduler: Scheduler
 ) {
-    protected abstract fun generateObservable(): Observable<T>
+    protected abstract fun generateObservable(input: Input? = null): Observable<T>
 
-    fun buildUseCase(): Observable<T> {
-        return generateObservable()
+    fun buildUseCase(input: Input? = null): Observable<T> {
+        return generateObservable(input)
             .subscribeOn(backgroundScheduler)
             .observeOn(foregroundScheduler)
     }

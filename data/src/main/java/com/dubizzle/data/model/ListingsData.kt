@@ -1,7 +1,7 @@
 package com.dubizzle.data.model
 
 data class ListingsData (
-    val uid: String? = null,
+    val uid: String,
 
     val price: String? = null,
 
