@@ -3,12 +3,12 @@ package com.dubizzle.local.source
 import com.dubizzle.data.model.ListingsData
 import com.dubizzle.data.repository.LocalDataSource
 import com.dubizzle.local.database.ListingsDAO
-import com.dubizzle.local.mapper.ListingsLocalMapper
+import com.dubizzle.local.mapper.ListingsDataLocalMapper
 import io.reactivex.Observable
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(
-    private val listingsMapper: ListingsLocalMapper,
+    private val listingsMapper: ListingsDataLocalMapper,
     private val listingsDAO: ListingsDAO,
 ) : LocalDataSource {
 
