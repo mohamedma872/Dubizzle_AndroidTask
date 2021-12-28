@@ -2,6 +2,7 @@ package com.dubizzle.androidtask.di
 
 import android.app.Application
 import android.content.Context
+import com.dubizzle.androidtask.ui.DetailActivity
 import com.dubizzle.androidtask.ui.HomeActivity
 import com.dubizzle.androidtask.ui.ListingsAdapter
 import dagger.Module
@@ -19,6 +20,9 @@ abstract class AppModule {
 
     @ContributesAndroidInjector
     internal abstract fun contributesHomeActivity(): HomeActivity
+
+    @ContributesAndroidInjector
+    internal abstract fun contributesDetailActivity(): DetailActivity
 
     @ContributesAndroidInjector
     internal abstract fun contributesListingsAdapter(): ListingsAdapter

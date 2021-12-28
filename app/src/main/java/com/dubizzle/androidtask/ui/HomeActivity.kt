@@ -1,5 +1,6 @@
 package com.dubizzle.androidtask.ui
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,7 @@ import com.dubizzle.presentation.factory.ViewModelFactory
 import com.dubizzle.presentation.model.Listings
 import com.dubizzle.presentation.model.Status
 import com.dubizzle.presentation.viewmodel.HomeViewModel
+import com.google.gson.Gson
 import dagger.android.AndroidInjection
 import javax.inject.Inject
 
@@ -23,7 +25,7 @@ class HomeActivity : AppCompatActivity(),
 
     private lateinit var homeVM: HomeViewModel
 
-    private val listingsAdapter = ListingsAdapter(this)
+    private val listingsAdapter = ListingsAdapter()
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -32,13 +34,12 @@ class HomeActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
         supportActionBar?.let {
-            it.setDisplayShowHomeEnabled(true)
-            it.setDisplayHomeAsUpEnabled(true)
+            it.setDisplayShowHomeEnabled(false)
+            it.setDisplayHomeAsUpEnabled(false)
+            it.setHomeButtonEnabled(false)
             it.setTitle(R.string.ActivityHome)
         }
-
         initAdapter()
         homeVM = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
 
@@ -73,12 +74,18 @@ class HomeActivity : AppCompatActivity(),
         with(binding)
         {
             recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
+            listingsAdapter.interaction = this@HomeActivity
             recyclerView.adapter = listingsAdapter
         }
     }
 
     override fun listingsClicked(Object: Listings) {
-        TODO("Not yet implemented")
+        startActivity(
+            Intent(this, DetailActivity::class.java).putExtra(
+                "Listings",
+                Gson().toJson(Object)
+            )
+        )
     }
 
     /**

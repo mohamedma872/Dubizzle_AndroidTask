@@ -1,6 +1,7 @@
 package com.dubizzle.androidtask.di
 
 import android.app.Application
+import androidx.room.Room
 import com.dubizzle.data.model.ListingsData
 import com.dubizzle.data.repository.LocalDataSource
 import com.dubizzle.local.database.ListingsDB
@@ -11,6 +12,7 @@ import com.dubizzle.local.source.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+
 import javax.inject.Singleton
 
 @Module(includes = [LocalPersistenceModule.Binders::class])
@@ -27,7 +29,7 @@ class LocalPersistenceModule {
 
         @Binds
         fun bindListingsMapper(
-            listingsMapper: ListingsDataLocalMapper
+            transactionMapper: ListingsDataLocalMapper
         ): Mapper<ListingsData, ListingsLocal>
     }
 
@@ -35,8 +37,9 @@ class LocalPersistenceModule {
     @Singleton
     fun providesDatabase(
         application: Application
-    ) = ListingsDB.getInstance(application.applicationContext)
-
+    ) = Room.inMemoryDatabaseBuilder(application, ListingsDB::class.java)
+        .allowMainThreadQueries()
+        .build()
 
 
     @Provides
