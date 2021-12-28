@@ -36,9 +36,10 @@ class HomeViewModelTest {
 
     @Before
     fun setup() {
+        val limit = 20
         MockitoAnnotations.initMocks(this)
 
-        Mockito.`when`(repository.getListings())
+        Mockito.`when`(repository.getListings(limit))
             .thenReturn(Observable.just(listingsEntities))
 
         val getListingsTask = getListings()
@@ -51,8 +52,9 @@ class HomeViewModelTest {
     }
     @Test
     fun test_getListings_success() {
+        val limit = 20
         Mockito.`when`(
-            repository.getListings()
+            repository.getListings(limit)
         ).thenReturn(Observable.just(listingsEntities))
 
         val listingsListSource = homeVM.listingsResource
@@ -67,11 +69,11 @@ class HomeViewModelTest {
 
     @Test
     fun test_getListings_error() {
-
+        val limit = 20
         val errorMsg = "fetch transaction error"
 
         Mockito.`when`(
-            repository.getListings()
+            repository.getListings(limit)
         ).thenReturn(Observable.error(Throwable(errorMsg)))
 
         val listingsListSource = homeVM.listingsResource

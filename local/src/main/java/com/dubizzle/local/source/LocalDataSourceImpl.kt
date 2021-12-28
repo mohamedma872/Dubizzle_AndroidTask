@@ -12,12 +12,10 @@ class LocalDataSourceImpl @Inject constructor(
     private val listingsDAO: ListingsDAO,
 ) : LocalDataSource {
 
-    companion object {
-        private const val DEFAULT_LIMIT = 40
-    }
 
-    override fun getListings(limit: Int?): Observable<List<ListingsData>> {
-        return listingsDAO.getListings(limit ?: DEFAULT_LIMIT)
+
+    override fun getListings(limit: Int): Observable<List<ListingsData>> {
+        return listingsDAO.getListings(limit)
             .map { localItems ->
                 localItems.map {
                     println("Local Invoked")
