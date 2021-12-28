@@ -1,14 +1,5 @@
 package com.dubizzle.domain.entities
 
-data class ListResponse(
-    val pagination: Pagination? = null,
-    var results: List<ListingsEntity?>? = null
-)
-
-data class Pagination(
-    val key: Any? = null
-)
-
 data class ListingsEntity(
     val uid: String,
 

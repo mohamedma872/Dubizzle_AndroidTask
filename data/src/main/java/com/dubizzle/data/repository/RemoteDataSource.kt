@@ -4,5 +4,5 @@ import com.dubizzle.data.model.ListingsData
 import io.reactivex.Observable
 
 interface RemoteDataSource {
-    fun getListings(): Observable<List<ListingsData>>
+    fun getListings(limit: Int): Observable<List<ListingsData>>
 }
