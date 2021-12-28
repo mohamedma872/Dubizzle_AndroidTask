@@ -20,7 +20,12 @@ Some of the features of the app include
 
  - **Feature based packaging** - This screen-wise / feature-wise packaging makes code really easy to read and debug.
 
-
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%204.32.08%20AM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%204.50.23%20AM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%204.51.15%20AM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%205.08.29%20AM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%205.37.39%20PM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-27%20at%201.57.34%20PM.png)
 # Testing:
 To run all the unit tests, run `./gradlew test`. This would test the repositories and the viewmodels.
 
