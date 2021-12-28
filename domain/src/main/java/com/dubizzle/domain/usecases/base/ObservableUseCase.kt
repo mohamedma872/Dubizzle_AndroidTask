@@ -7,6 +7,7 @@ import io.reactivex.Scheduler
 ObservableUseCase use two generic types
 @param backgroundScheduler , foregroundScheduler it expects two Scheduler in the constructor for Scheduling.
 @param T is the input type
+@param Input is the parameter type
 @return the value returned by the method
 @throws what kind of exception does this method throw
  */
