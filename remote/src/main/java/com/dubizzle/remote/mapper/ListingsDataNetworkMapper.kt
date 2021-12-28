@@ -1,7 +1,6 @@
 package com.dubizzle.remote.mapper
 
 import com.dubizzle.data.model.ListingsData
-import com.dubizzle.remote.mapper.Mapper
 import com.dubizzle.remote.model.ListingsNetwork
 
 import javax.inject.Inject

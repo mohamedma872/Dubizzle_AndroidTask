@@ -8,7 +8,7 @@ import java.lang.reflect.Type
 object Converters {
     @TypeConverter
     fun fromString(value: String?): List<String> {
-        val listType: Type = object : TypeToken<List<String?>?>() {}.getType()
+        val listType: Type = object : TypeToken<List<String?>?>() {}.type
         return Gson().fromJson(value, listType)
     }
     @TypeConverter

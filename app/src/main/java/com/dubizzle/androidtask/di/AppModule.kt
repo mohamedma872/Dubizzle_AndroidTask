@@ -18,6 +18,7 @@ abstract class AppModule {
     @Binds
     abstract fun bindContext(application: Application): Context
 
+
     @ContributesAndroidInjector
     internal abstract fun contributesHomeActivity(): HomeActivity
 

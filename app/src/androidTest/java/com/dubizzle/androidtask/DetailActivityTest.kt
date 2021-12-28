@@ -38,7 +38,6 @@ class DetailActivityTest {
 
     private fun getResourceString(id: Int): String {
         val targetContext: Context = ApplicationProvider.getApplicationContext()
-        val test: String =  targetContext.getResources().getString(id)
-        return test
+        return targetContext.resources.getString(id)
     }
 }
