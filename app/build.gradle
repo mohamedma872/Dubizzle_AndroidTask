@@ -89,6 +89,10 @@ dependencies {
     implementation "androidx.fragment:fragment-ktx:1.4.0"
     //implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
 
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+
 
     // UI
     implementation "androidx.appcompat:appcompat:$appcompatVersion"

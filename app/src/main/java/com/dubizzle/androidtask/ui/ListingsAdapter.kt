@@ -1,17 +1,18 @@
 package com.dubizzle.androidtask.ui
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.dubizzle.androidtask.R
 import com.dubizzle.androidtask.databinding.ItemHomeBinding
 import com.dubizzle.presentation.model.Listings
 
 class ListingsAdapter
-    (private val context : Context) : ListAdapter<Listings, ListingsAdapter.ListViewHolder>(ListingsDiffUtil()) {
+    : ListAdapter<Listings, ListingsAdapter.ListViewHolder>(ListingsDiffUtil()) {
 
     var interaction: Interaction? = null
 
@@ -50,9 +51,18 @@ class ListingsAdapter
             interaction?.listingsClicked(clicked)
         }
 
-        fun bind(item: Listings) = with(binding) {
+        fun bind(item: Listings) {
 
-            name.text = item.name
+            binding.name.text = item.name
+            val media = item.imageUrlsThumbnails?.get(0)
+            if (media !== null) {
+                Glide.with(binding.root)
+                    .load(media)
+                    .into(binding.thumbnail)
+            } else {
+                binding.thumbnail.setImageResource(R.drawable.ic_launcher_background)
+            }
+
         }
     }
 

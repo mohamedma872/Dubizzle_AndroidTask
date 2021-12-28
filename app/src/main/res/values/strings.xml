@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Android Task</string>
     <string name="ActivityHome">Home</string>
+    <string name="ActivityDetail">Details</string>
     <string name="create_at">Created At : </string>
     <string name="price">Price : </string>
     <string name="name">Name : </string>
