@@ -1,4 +1,4 @@
-package org.drulabs.bankbuddy.di
+package com.dubizzle.androidtask.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

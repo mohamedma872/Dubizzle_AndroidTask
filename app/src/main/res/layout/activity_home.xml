@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DEDEDE"
     tools:context=".ui.HomeActivity">
 
     <RelativeLayout
@@ -12,14 +11,13 @@
         android:background="@color/white">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_marginTop="20dp"
             android:id="@+id/recyclerView"
+            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
 
-        <ProgressBar
-            android:id="@+id/progress"
+        <ProgressBar android:id="@+id/progress"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_centerVertical="true"

@@ -53,7 +53,6 @@ class DetailActivity : AppCompatActivity() {
             (getString(R.string.price) + obj?.price).also { binding.price.text = it }
             (getString(R.string.name) + obj?.name).also { binding.name.text = it }
             (getString(R.string.uid) + obj?.uid).also { binding.uid.text = it }
-            (getString(R.string.id) + obj?.imageIds?.get(0)).also { binding.id.text = it }
             val media = obj.imageUrls?.get(0)
             if (media !== null) {
                 Glide.with(this@DetailActivity)

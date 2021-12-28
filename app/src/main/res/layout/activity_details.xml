@@ -3,11 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DEDEDE"
     tools:context=".ui.DetailActivity">
 
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/rootDetails"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -29,7 +27,8 @@
                 android:id="@+id/image"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scaleType="centerCrop" />
+                android:scaleType="centerCrop"
+                android:contentDescription="TODO" />
 
         </androidx.cardview.widget.CardView>
 
@@ -51,8 +50,7 @@
             android:textSize="14sp"
             android:text="@string/price" />
 
-        <TextView
-            android:id="@+id/name"
+        <TextView android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
@@ -69,19 +67,8 @@
             android:textSize="14sp"
             android:text="@string/uid" />
 
-        <TextView
-            android:id="@+id/id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColor="@color/purple_700"
-            android:textSize="14sp"
-            android:text="@string/id" />
 
-        <ImageView
-            android:id="@+id/thumbnail"
-            android:layout_width="100dp"
-            android:layout_height="100dp" />
+
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,12 +35,12 @@ class RemoteDataSourceImplTest {
 
     @Test
     fun test_getListings_success() {
-        val Listings = TestDataGenerator.generateListings()
+        val listings = TestDataGenerator.generateListings()
         val limit = 10
 
         val mockResponse = ResponseWrapper(
             null,
-            Listings
+            listings
         )
 
         Mockito.`when`(listingsService.getListings())
@@ -51,7 +51,7 @@ class RemoteDataSourceImplTest {
             .assertSubscribed()
             .assertValue { transactionsList ->
                 transactionsList.containsAll(
-                    Listings.map { listingsMapper.from(it) }
+                    listings.map { listingsMapper.from(it) }
                 )
             }
             .assertComplete()

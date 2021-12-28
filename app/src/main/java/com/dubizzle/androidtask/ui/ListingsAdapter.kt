@@ -12,7 +12,7 @@ import com.dubizzle.androidtask.databinding.ItemHomeBinding
 import com.dubizzle.presentation.model.Listings
 
 class ListingsAdapter
-    : ListAdapter<Listings, ListingsAdapter.ListViewHolder>(ListingsDiffUtil()) {
+     : ListAdapter<Listings, ListingsAdapter.ListViewHolder>(ListingsDiffUtil()) {
 
     var interaction: Interaction? = null
 

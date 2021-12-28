@@ -33,7 +33,7 @@ class HomeViewModel @Inject internal constructor(
             transactionEntities.map {
                 listingsMapper.to(it)
             }
-        // finally it creates a Resource object based on completion , loading and an error state that's repesent the single state of home screen
+        // finally it creates a Resource object based on completion , loading and an error state that's represent the single state of home screen
         }.map { Resource.success(it) }
         .startWith(Resource.loading())
         .onErrorResumeNext(Function {

@@ -5,8 +5,8 @@ import io.reactivex.Observable
 
 
 interface LocalDataSource {
-    fun getListings(limit: Int): Observable<List<ListingsData>>
+    fun getListings(limit: Int?): Observable<List<ListingsData>>
     fun getListingsByID(uid: String): Observable<ListingsData>
-    fun saveListings(transactions: List<ListingsData>)
+    fun saveListings(listings: List<ListingsData>)
 
 }

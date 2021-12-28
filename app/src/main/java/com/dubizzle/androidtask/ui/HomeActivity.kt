@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dubizzle.androidtask.R
@@ -25,7 +24,8 @@ class HomeActivity : AppCompatActivity(),
 
     private lateinit var homeVM: HomeViewModel
 
-    private val listingsAdapter = ListingsAdapter()
+
+    private lateinit var listingsAdapter : ListingsAdapter
 
     private lateinit var binding: ActivityHomeBinding
 
@@ -41,9 +41,9 @@ class HomeActivity : AppCompatActivity(),
             it.setTitle(R.string.ActivityHome)
         }
         initAdapter()
-        homeVM = ViewModelProvider(this, viewModelFactory).get(HomeViewModel::class.java)
+        homeVM = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        homeVM.listingsResource.observe(this, Observer {
+        homeVM.listingsResource.observe(this, {
             when (it.status) {
                 Status.LOADING -> {
                     println("Loading")
@@ -73,6 +73,7 @@ class HomeActivity : AppCompatActivity(),
     private fun initAdapter() {
         with(binding)
         {
+            listingsAdapter = ListingsAdapter()
             recyclerView.layoutManager = LinearLayoutManager(this@HomeActivity)
             listingsAdapter.interaction = this@HomeActivity
             recyclerView.adapter = listingsAdapter

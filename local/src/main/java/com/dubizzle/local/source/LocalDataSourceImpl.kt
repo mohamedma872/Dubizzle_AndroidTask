@@ -16,8 +16,8 @@ class LocalDataSourceImpl @Inject constructor(
         private const val DEFAULT_LIMIT = 40
     }
 
-    override fun getListings(limit: Int): Observable<List<ListingsData>> {
-        return listingsDAO.getListings(limit)
+    override fun getListings(limit: Int?): Observable<List<ListingsData>> {
+        return listingsDAO.getListings(limit ?: DEFAULT_LIMIT)
             .map { localItems ->
                 localItems.map {
                     println("Local Invoked")
@@ -34,9 +34,9 @@ class LocalDataSourceImpl @Inject constructor(
             }
     }
 
-    override fun saveListings(items: List<ListingsData>) {
+    override fun saveListings(listings: List<ListingsData>) {
         listingsDAO.addListings(
-            items.map {
+            listings.map {
                 listingsMapper.to(it)
             }
         )
