@@ -27,7 +27,7 @@ class HomeViewModel @Inject internal constructor(
     val listingsResource : LiveData<Resource<List<Listings>>>
         get() = getListingsTask
         // it's basically build the UseCase
-        .buildUseCase()
+        .buildUseCase(GetListingsTask.Params( 40))
         // it map the data to an acceptable format using the injected mapper
         .map { transactionEntities ->
             transactionEntities.map {
