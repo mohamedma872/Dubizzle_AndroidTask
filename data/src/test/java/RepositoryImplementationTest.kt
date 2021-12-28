@@ -42,7 +42,7 @@ class RepositoryImplementationTest {
         val limit = 20
         val listingsData = TestDataGenerator.generateListings()
 
-        Mockito.`when`(remoteDataSource.getListings())
+        Mockito.`when`(remoteDataSource.getListings(limit))
             .thenReturn(Observable.just(listingsData))
         Mockito.`when`(localDataSource.getListings(limit))
             .thenReturn(Observable.just(listingsData))
@@ -60,7 +60,7 @@ class RepositoryImplementationTest {
             .saveListings( listingsData)
 
         Mockito.verify(remoteDataSource, times(1))
-            .getListings()
+            .getListings(limit)
     }
 
     @Test
@@ -69,7 +69,7 @@ class RepositoryImplementationTest {
 
         val listingsData = TestDataGenerator.generateListings()
 
-        Mockito.`when`(remoteDataSource.getListings())
+        Mockito.`when`(remoteDataSource.getListings(limit))
             .thenReturn(Observable.error(Throwable()))
         Mockito.`when`(localDataSource.getListings(limit))
             .thenReturn(Observable.just(listingsData))

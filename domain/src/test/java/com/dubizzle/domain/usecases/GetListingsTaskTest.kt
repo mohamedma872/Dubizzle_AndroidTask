@@ -15,14 +15,14 @@ import org.mockito.MockitoAnnotations
 @RunWith(JUnit4::class)
 class GetListingsTaskTest {
 
-    private lateinit var getUserTransactionsTask: GetListingsTask
+    private lateinit var getUserListingsTask: GetListingsTask
     @Mock
     lateinit var listingsRepository: ListingsRepository
 
     @Before
     fun setup() {
         MockitoAnnotations.initMocks(this)
-        getUserTransactionsTask = GetListingsTask(
+        getUserListingsTask = GetListingsTask(
             listingsRepository,
             Schedulers.trampoline(),
             Schedulers.trampoline()
@@ -32,12 +32,17 @@ class GetListingsTaskTest {
     @Test
     fun test_getListings_success() {
 
+        val limit = 20
         val listings = TestDataGenerator.generateListings()
 
-        Mockito.`when`(listingsRepository.getListings())
+        Mockito.`when`(listingsRepository.getListings(limit))
             .thenReturn(Observable.just(listings))
 
-        val testObserver = getUserTransactionsTask.buildUseCase().test()
+        val testObserver = getUserListingsTask.buildUseCase(
+            GetListingsTask.Params(
+                limit
+            )
+        ).test()
 
         testObserver
             .assertSubscribed()
@@ -47,12 +52,15 @@ class GetListingsTaskTest {
     @Test
     fun test_getListings_error() {
 
+        val limit = 20
         val errorMsg = "ERROR OCCURRED"
 
-        Mockito.`when`(listingsRepository.getListings())
+        Mockito.`when`(listingsRepository.getListings(limit))
             .thenReturn(Observable.error(Throwable(errorMsg)))
 
-        val testObserver = getUserTransactionsTask.buildUseCase().test()
+        val testObserver = getUserListingsTask.buildUseCase( GetListingsTask.Params(
+            limit
+        )).test()
 
         testObserver
             .assertSubscribed()
