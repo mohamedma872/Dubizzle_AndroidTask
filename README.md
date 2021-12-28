@@ -3,7 +3,7 @@ DubizzleTask
 
 Dubizzle - Android Take Home Project This is an Android Project Application README to show briefly the sections your app README should contain.
 
-<b>Installation</>
+<b>Installation<b/>
 
 Clone this repository and import into Android Studio
 
