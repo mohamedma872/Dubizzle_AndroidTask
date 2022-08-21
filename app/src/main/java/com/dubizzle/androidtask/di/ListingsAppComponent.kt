@@ -1,16 +1,15 @@
 package com.dubizzle.androidtask.di
 
-import android.app.Application
 import com.dubizzle.androidtask.application.ListingsApp
-import dagger.BindsInstance
-import dagger.Component
+import dagger.Module
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
-import javax.inject.Singleton
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-@Singleton
-@Component(
-    modules = [
+@InstallIn(SingletonComponent::class)
+@Module(
+    includes = [
         AndroidInjectionModule::class,
         DomainModule::class,
         DataModule::class,
@@ -20,16 +19,11 @@ import javax.inject.Singleton
         AppModule::class
     ]
 )
+//removed dagger custom component builder as it's not needed by hilt
+//injected app context for database initialization using @ApplicationContext
 interface ListingsAppComponent : AndroidInjector<ListingsApp> {
 
-    @Component.Builder
-    interface Builder {
 
-        @BindsInstance
-        fun application(app: Application): Builder
 
-        fun build(): ListingsAppComponent
-    }
 
-    override fun inject(app: ListingsApp)
 }

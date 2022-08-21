@@ -8,7 +8,6 @@ import com.dubizzle.androidtask.R
 import com.dubizzle.androidtask.databinding.ActivityDetailsBinding
 import com.dubizzle.presentation.model.Listings
 import com.google.gson.Gson
-import dagger.android.AndroidInjection
 
 
 class DetailActivity : AppCompatActivity() {
@@ -16,7 +15,6 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailsBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)

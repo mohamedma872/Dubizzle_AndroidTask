@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
+
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -30,6 +32,9 @@ dependencies {
     implementation project(':domain')
 
     implementation 'androidx.core:core-ktx:1.7.0'
+
+    testAnnotationProcessor "com.google.dagger:hilt-compiler:$daggerHiltVersion"
+
 
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
 

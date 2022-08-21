@@ -1,6 +1,7 @@
 package com.dubizzle.presentation.viewmodel
 
 import androidx.lifecycle.LiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.toLiveData
 import com.dubizzle.domain.entities.ListingsEntity
@@ -8,16 +9,19 @@ import com.dubizzle.domain.usecases.GetListingsTask
 import com.dubizzle.presentation.mapper.Mapper
 import com.dubizzle.presentation.model.Listings
 import com.dubizzle.presentation.model.Resource
+
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function
 import javax.inject.Inject
 
+
 // i injected all the required dependencies via constructor
-class HomeViewModel @Inject internal constructor(
-    private val listingsMapper: Mapper<ListingsEntity, Listings>,
-    private val getListingsTask: GetListingsTask,
+
+class HomeViewModel @Inject constructor(
+     private val listingsMapper: Mapper<ListingsEntity, Listings>,
+     private val getListingsTask: GetListingsTask
 ) : ViewModel() {
 
 

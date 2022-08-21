@@ -11,13 +11,16 @@ import com.dubizzle.remote.source.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 @Module(includes = [RemoteModule.Binders::class])
+@InstallIn(SingletonComponent::class)
 class RemoteModule {
-
+    @InstallIn(SingletonComponent::class)
     @Module
     interface Binders {
 

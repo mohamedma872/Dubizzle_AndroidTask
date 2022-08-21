@@ -8,7 +8,7 @@ import javax.inject.Provider
 import javax.inject.Singleton
 
 @Singleton
-open class ViewModelFactory @Inject constructor(
+class ViewModelFactory @Inject constructor(
     private val providers: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>
 ) : ViewModelProvider.Factory {
 

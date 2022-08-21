@@ -3,6 +3,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'dagger.hilt.android.plugin'
 
 apply plugin: 'kotlin-kapt'
 
@@ -47,6 +48,20 @@ dependencies {
     implementation project(':local')
     implementation project(':presentation')
     implementation 'androidx.core:core-ktx:1.7.0'
+    //dagger hilt dependencies
+    implementation "com.google.dagger:hilt-android:$daggerHiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$daggerHiltVersion"
+
+    // For instrumentation tests
+    androidTestImplementation  "com.google.dagger:hilt-android-testing:$daggerHiltVersion"
+    kapt "com.google.dagger:hilt-compiler:$daggerHiltVersion"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$daggerHiltVersion"
+
+    // For local unit tests
+    testImplementation "com.google.dagger:hilt-android-testing:$daggerHiltVersion"
+    testAnnotationProcessor "com.google.dagger:hilt-compiler:$daggerHiltVersion"
+
+
 
     // Dagger dependency injection
     implementation "com.google.dagger:dagger:$daggerVersion"

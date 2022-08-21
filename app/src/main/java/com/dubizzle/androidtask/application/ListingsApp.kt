@@ -1,12 +1,10 @@
 package com.dubizzle.androidtask.application
 
-import com.dubizzle.androidtask.di.DaggerListingsAppComponent
-import dagger.android.AndroidInjector
-import dagger.android.DaggerApplication
+import android.app.Application
+import dagger.hilt.android.HiltAndroidApp
 
-class ListingsApp: DaggerApplication() {
+@HiltAndroidApp
+class ListingsApp: Application()
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> {
-        return DaggerListingsAppComponent.builder().application(this).build()
-    }
-}
+
+

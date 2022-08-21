@@ -4,12 +4,15 @@ import com.dubizzle.domain.qualifiers.Background
 import com.dubizzle.domain.qualifiers.Foreground
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Singleton
 
 @Module
+@InstallIn(SingletonComponent::class)
 class DomainModule {
 
     @Singleton

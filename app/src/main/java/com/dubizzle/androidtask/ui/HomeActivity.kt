@@ -3,6 +3,7 @@ package com.dubizzle.androidtask.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,15 +14,17 @@ import com.dubizzle.presentation.model.Listings
 import com.dubizzle.presentation.model.Status
 import com.dubizzle.presentation.viewmodel.HomeViewModel
 import com.google.gson.Gson
-import dagger.android.AndroidInjection
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
+//Tell hilt that we are injecting dependencies into this android class
+@AndroidEntryPoint
 class HomeActivity : AppCompatActivity(),
     ListingsAdapter.Interaction {
 
+
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
-
     private lateinit var homeVM: HomeViewModel
 
 
@@ -30,7 +33,7 @@ class HomeActivity : AppCompatActivity(),
     private lateinit var binding: ActivityHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
+
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -40,10 +43,12 @@ class HomeActivity : AppCompatActivity(),
             it.setHomeButtonEnabled(false)
             it.setTitle(R.string.ActivityHome)
         }
+
         initAdapter()
         homeVM = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
 
-        homeVM.listingsResource.observe(this, {
+
+        homeVM.listingsResource.observe(this) {
             when (it.status) {
                 Status.LOADING -> {
                     println("Loading")
@@ -63,7 +68,7 @@ class HomeActivity : AppCompatActivity(),
                     }
                 }
             }
-        })
+        }
     }
 
     /**

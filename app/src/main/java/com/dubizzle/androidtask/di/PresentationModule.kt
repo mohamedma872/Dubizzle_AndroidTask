@@ -10,10 +10,13 @@ import com.dubizzle.presentation.model.Listings
 import com.dubizzle.presentation.viewmodel.HomeViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import dagger.multibindings.IntoMap
 
 
 @Module
+@InstallIn(SingletonComponent::class)
 abstract class PresentationModule {
 
     @Binds
