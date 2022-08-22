@@ -10,26 +10,37 @@ import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.filters.LargeTest
+import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.rule.ActivityTestRule
-import androidx.test.runner.AndroidJUnit4
 import com.dubizzle.androidtask.ui.HomeActivity
+import dagger.hilt.android.testing.HiltAndroidRule
+import dagger.hilt.android.testing.HiltAndroidTest
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.allOf
 import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.TypeSafeMatcher
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
 @LargeTest
-@RunWith(AndroidJUnit4::class)
+@RunWith(AndroidJUnit4ClassRunner::class)
+@HiltAndroidTest
 class HomeActivityTest {
+    @get:Rule(order = 0)
+    var hiltRule = HiltAndroidRule(this)
 
-    @Rule
-    @JvmField
+    @get:Rule(order = 1)
     var mActivityTestRule = ActivityTestRule(HomeActivity::class.java)
 
+@Before
+fun init(){
+
+    hiltRule.inject()
+
+}
     @Test
     fun mainActivityTest() {
         val recyclerView = onView(

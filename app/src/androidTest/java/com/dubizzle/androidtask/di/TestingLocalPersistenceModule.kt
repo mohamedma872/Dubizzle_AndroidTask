@@ -12,13 +12,22 @@ import com.dubizzle.local.source.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 
 import javax.inject.Singleton
 
-@Module(includes = [LocalPersistenceModule.Binders::class])
-class LocalPersistenceModule {
+@Module(includes = [TestingLocalPersistenceModule.Binders::class])
+@TestInstallIn(components = [SingletonComponent::class], replaces = [LocalPersistenceModule::class])
+class TestingLocalPersistenceModule {
 
     @Module
+    @TestInstallIn(
+        components = [SingletonComponent::class], replaces = [LocalPersistenceModule.Binders::class
+        ]
+    )
     interface Binders {
 
         @Binds

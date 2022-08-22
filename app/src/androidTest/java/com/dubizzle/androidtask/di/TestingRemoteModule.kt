@@ -12,14 +12,23 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import com.dubizzle.androidtask.utils.FakeListingsService
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.components.SingletonComponent
+import dagger.hilt.testing.TestInstallIn
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-@Module(includes = [RemoteModule.Binders::class])
-class RemoteModule {
+@Module(includes = [TestingRemoteModule.Binders::class])
+@TestInstallIn(components = [SingletonComponent::class], replaces = [RemoteModule::class])
+class TestingRemoteModule {
 
     @Module
+    @TestInstallIn(
+        components = [SingletonComponent::class], replaces = [RemoteModule.Binders::class
+        ]
+    )
     interface Binders {
 
         @Binds

@@ -17,7 +17,7 @@ android {
         versionCode rootProject.ext.appVersionCode
         versionName rootProject.ext.appVersionName
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.dubizzle.androidtask.HiltTestRunner"
     }
 
     buildTypes {
@@ -50,6 +50,7 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.7.0'
     //dagger hilt dependencies
     implementation "com.google.dagger:hilt-android:$daggerHiltVersion"
+
     kapt "com.google.dagger:hilt-compiler:$daggerHiltVersion"
 
     // For instrumentation tests

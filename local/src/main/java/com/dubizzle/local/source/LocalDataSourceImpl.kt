@@ -12,8 +12,6 @@ class LocalDataSourceImpl @Inject constructor(
     private val listingsDAO: ListingsDAO,
 ) : LocalDataSource {
 
-
-
     override fun getListings(limit: Int): Observable<List<ListingsData>> {
         return listingsDAO.getListings(limit)
             .map { localItems ->

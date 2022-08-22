@@ -3,7 +3,6 @@ package com.dubizzle.androidtask.ui
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -46,8 +45,6 @@ class HomeActivity : AppCompatActivity(),
 
         initAdapter()
         homeVM = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
-
-
         homeVM.listingsResource.observe(this) {
             when (it.status) {
                 Status.LOADING -> {

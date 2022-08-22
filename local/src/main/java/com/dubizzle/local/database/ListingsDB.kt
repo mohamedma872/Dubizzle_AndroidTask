@@ -15,7 +15,7 @@ import com.dubizzle.local.model.ListingsLocal
 )
 
 @TypeConverters(Converters::class)
-abstract class ListingsDB : RoomDatabase() {
+abstract class ListingsDB: RoomDatabase() {
 
     companion object {
         private val LOCK = Any()

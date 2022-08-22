@@ -23,7 +23,8 @@ class ListingsRepositoryImpl @Inject constructor(
         return remoteDataSource.getListings(limit)
             .map { listings ->
                 localDataSource.saveListings(listings)
-                listings.map { listingsMapper.from(it) }
+                listings.map {
+                    listingsMapper.from(it) }
             }.onErrorResumeNext(Observable.empty())
             .concatWith(localListings)
     }
