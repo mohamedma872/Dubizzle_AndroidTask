@@ -1,8 +1,6 @@
 package com.dubizzle.presentation.viewmodel
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.toLiveData
+import androidx.lifecycle.*
 import com.dubizzle.domain.entities.ListingsEntity
 import com.dubizzle.domain.usecases.GetListingsTask
 import com.dubizzle.presentation.mapper.Mapper
@@ -12,7 +10,9 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Function
+import kotlinx.coroutines.*
 import javax.inject.Inject
+import kotlin.coroutines.CoroutineContext
 
 // i injected all the required dependencies via constructor
 class HomeViewModel @Inject internal constructor(
@@ -20,34 +20,25 @@ class HomeViewModel @Inject internal constructor(
     private val getListingsTask: GetListingsTask,
 ) : ViewModel() {
 
-
-    private val disposables = CompositeDisposable()
-
+init {
+    getData()
+}
     // live data of resource of Listings class that will be consumed by the UI
-    val listingsResource : LiveData<Resource<List<Listings>>>
-        get() = getListingsTask
-        // it's basically build the UseCase
-        .buildUseCase(GetListingsTask.Params( 20))
-        // it map the data to an acceptable format using the injected mapper
-        .map { transactionEntities ->
-            transactionEntities.map {
-                listingsMapper.to(it)
+    val listingsResource : MutableLiveData<Resource<List<Listings>>> = MutableLiveData<Resource<List<Listings>>>()
+
+    fun getData() {
+            viewModelScope.launch(Dispatchers.IO){
+
+                listingsResource.postValue(Resource.success(
+                    getListingsTask
+                        // it's basically build the UseCase
+                        .buildUseCase(GetListingsTask.Params(20))
+                        // it map the data to an acceptable format using the injected mapper
+                        .map { transactionEntities ->
+                            listingsMapper.to(transactionEntities)
+                        }
+                )
+                )
             }
-        // finally it creates a Resource object based on completion , loading and an error state that's represent the single state of home screen
-        }.map { Resource.success(it) }
-        .startWith(Resource.loading())
-        .onErrorResumeNext(Function {
-            Observable.just(
-                Resource.error(it.localizedMessage ?: "")
-            )
-        }).toFlowable(BackpressureStrategy.LATEST)
-        // we then convert the RX observable to live data using the extension function of LiveDataReactiveStream
-        .toLiveData()
-
-
-    override fun onCleared() {
-        super.onCleared()
-        disposables.dispose()
-    }
-
+        }
 }

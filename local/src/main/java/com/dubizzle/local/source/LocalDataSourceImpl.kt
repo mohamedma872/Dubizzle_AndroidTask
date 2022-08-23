@@ -12,33 +12,22 @@ class LocalDataSourceImpl @Inject constructor(
     private val listingsDAO: ListingsDAO,
 ) : LocalDataSource {
 
-
-
-    override fun getListings(limit: Int): Observable<List<ListingsData>> {
+    override fun getListings(limit: Int): List<ListingsData> {
         return listingsDAO.getListings(limit)
-            .map { localItems ->
-                localItems.map {
-                    println("Local Invoked")
-                    listingsMapper.from(it)
+            .map {
+                listingsMapper.from(it)
                 }
             }
+
+    override fun getListingsByID(uid: String): ListingsData  {
+        return listingsMapper.from(listingsDAO.listingsById(uid))
     }
 
-    override fun getListingsByID(uid: String): Observable<ListingsData> {
-        return listingsDAO.listingsById(uid)
-            .map {
-                println("Local get transactions Invoked")
-                listingsMapper.from(it)
-            }
-    }
-
-    override fun saveListings(listings: List<ListingsData>) {
+    override suspend fun saveListings(listings: List<ListingsData>) {
         listingsDAO.addListings(
             listings.map {
                 listingsMapper.to(it)
             }
         )
     }
-
-
 }

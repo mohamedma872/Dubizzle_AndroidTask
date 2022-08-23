@@ -37,7 +37,7 @@ class ListingsDAOTest {
         listingsDB.close()
     }
     @Test
-    fun test_saveAndRetrieveUserListings() {
+    suspend fun test_saveAndRetrieveUserListings() {
 
         val listings = TestData.generateListings()
         val listingsCount = listings.size
@@ -53,7 +53,7 @@ class ListingsDAOTest {
     }
 
     @Test
-    fun test_clearCachedListings() {
+    suspend fun test_clearCachedListings() {
         val limit = 40
         val listings = TestData.generateListings()
 

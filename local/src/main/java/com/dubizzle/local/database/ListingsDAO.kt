@@ -4,18 +4,19 @@ import androidx.room.*
 import com.dubizzle.local.model.ListingsLocal
 import io.reactivex.Completable
 import io.reactivex.Observable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ListingsDAO {
     @Query("SELECT * FROM listings ORDER BY createdAt DESC LIMIT :limit")
-    fun getListings(limit: Int): Observable<List<ListingsLocal>>
+    fun getListings(limit: Int): List<ListingsLocal>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun addListings(items: List<ListingsLocal>)
+    suspend fun addListings(items: List<ListingsLocal>)
 
     @Query("SELECT * FROM listings WHERE uid = :uid")
-    fun listingsById(uid: String): Observable<ListingsLocal>
+    fun listingsById(uid: String): ListingsLocal
 
     @Query("DELETE FROM listings")
-    fun clearCachedTransactions(): Completable
+    fun clearCachedTransactions()
 }

@@ -34,7 +34,7 @@ class RemoteDataSourceImplTest {
 
 
     @Test
-    fun test_getListings_success() {
+    suspend fun test_getListings_success() {
         val listings = TestDataGenerator.generateListings()
         val limit = 20
 
@@ -44,7 +44,7 @@ class RemoteDataSourceImplTest {
         )
 
         Mockito.`when`(listingsService.getListings())
-            .thenReturn(Observable.just(mockResponse))
+            .thenReturn(just(mockResponse))
 
         remoteDataSource.getListings(limit)
             .test()
@@ -58,12 +58,12 @@ class RemoteDataSourceImplTest {
     }
 
     @Test
-    fun test_getUserTransactions_error() {
+    suspend fun test_getUserTransactions_error() {
         val errorMsg = "ERROR"
         val limit = 20
 
         Mockito.`when`(listingsService.getListings())
-            .thenReturn(Observable.error(Throwable(errorMsg)))
+            .thenReturn(error(Throwable(errorMsg)))
 
         remoteDataSource.getListings(limit)
             .test()

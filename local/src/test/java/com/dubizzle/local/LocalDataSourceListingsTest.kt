@@ -56,7 +56,7 @@ class LocalDataSourceListingsTest {
     }
 
     @Test
-    fun test_saveListings_success() {
+    suspend fun test_saveListings_success() {
         val mockTransactions = TestDataGenerator.generateListings()
 
         localDataSource.saveListings(
