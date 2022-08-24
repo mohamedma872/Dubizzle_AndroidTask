@@ -19,6 +19,5 @@ abstract class GetItemsListUseCase<T, in Input> {
 
     suspend fun buildUseCase(input: Input? = null): T {
         return generateObservable(input)
-
     }
 }

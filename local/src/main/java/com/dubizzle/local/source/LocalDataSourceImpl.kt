@@ -4,7 +4,6 @@ import com.dubizzle.data.model.ListingsData
 import com.dubizzle.data.repository.LocalDataSource
 import com.dubizzle.local.database.ListingsDAO
 import com.dubizzle.local.mapper.ListingsDataLocalMapper
-import io.reactivex.Observable
 import javax.inject.Inject
 
 class LocalDataSourceImpl @Inject constructor(

@@ -18,5 +18,5 @@ class RemoteDataSourceImpl @Inject constructor(
                 listingsMapper.from(listing)
             } ?: emptyList()
     }
-        }
+}
 
