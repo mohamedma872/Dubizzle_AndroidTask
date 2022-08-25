@@ -3,10 +3,13 @@ package com.dubizzle.androidtask.di
 import com.dubizzle.androidtask.BuildConfig
 import com.dubizzle.data.model.ListingsData
 import com.dubizzle.data.repository.RemoteDataSource
+import com.dubizzle.data.repository.form.FormRemoteDataSource
 import com.dubizzle.remote.api.ListingsService
+import com.dubizzle.remote.api.RemoteService
 import com.dubizzle.remote.mapper.ListingsDataNetworkMapper
 import com.dubizzle.remote.mapper.Mapper
 import com.dubizzle.remote.model.ListingsNetwork
+import com.dubizzle.remote.source.FormRemoteDataSourceImpl
 import com.dubizzle.remote.source.RemoteDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -31,12 +34,22 @@ class RemoteModule {
             listingsMapper: ListingsDataNetworkMapper
         ): Mapper<ListingsData, ListingsNetwork>
 
+        @Binds
+        fun bindsFormRemoteSource(
+            formRemoteDataSourceImpl: FormRemoteDataSourceImpl
+        ): FormRemoteDataSource
+
+
 
     }
 
     @Provides
     fun providesListingsService(retrofit: Retrofit): ListingsService =
         retrofit.create(ListingsService::class.java)
+
+    @Provides
+    fun providesFormService(retrofit: Retrofit): RemoteService =
+        retrofit.create(RemoteService::class.java)
 
 
     @Provides

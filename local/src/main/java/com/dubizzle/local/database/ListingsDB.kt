@@ -6,10 +6,11 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.dubizzle.local.model.FormLocal
 import com.dubizzle.local.model.ListingsLocal
 
 @Database(
-    entities = [ListingsLocal::class],
+    entities = [ListingsLocal::class,FormLocal::class],
     version = 1,
     exportSchema = false
 )
@@ -41,6 +42,8 @@ abstract class ListingsDB : RoomDatabase() {
     }
 
     abstract fun getListingsDao(): ListingsDAO
+
+    abstract fun getFormDao(): FormDAO
 
 
 }

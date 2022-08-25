@@ -48,4 +48,10 @@ class LocalPersistenceModule {
         listingsDB: ListingsDB
     ) = listingsDB.getListingsDao()
 
+    @Provides
+    @Singleton
+    fun providesFormDAO(
+        listingsDB: ListingsDB
+    ) = listingsDB.getFormDao()
+
 }

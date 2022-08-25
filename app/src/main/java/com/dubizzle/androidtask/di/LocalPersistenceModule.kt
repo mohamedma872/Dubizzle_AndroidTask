@@ -1,12 +1,17 @@
 package com.dubizzle.androidtask.di
 
 import android.app.Application
+import com.dubizzle.data.model.FormData
 import com.dubizzle.data.model.ListingsData
 import com.dubizzle.data.repository.LocalDataSource
+import com.dubizzle.data.repository.form.FormLocalDataSource
 import com.dubizzle.local.database.ListingsDB
+import com.dubizzle.local.mapper.FormDataLocalMapper
 import com.dubizzle.local.mapper.ListingsDataLocalMapper
 import com.dubizzle.local.mapper.Mapper
+import com.dubizzle.local.model.FormLocal
 import com.dubizzle.local.model.ListingsLocal
+import com.dubizzle.local.source.FormLocalDataSourceImpl
 import com.dubizzle.local.source.LocalDataSourceImpl
 import dagger.Binds
 import dagger.Module
@@ -29,6 +34,17 @@ class LocalPersistenceModule {
         fun bindListingsMapper(
             listingsMapper: ListingsDataLocalMapper
         ): Mapper<ListingsData, ListingsLocal>
+
+        @Binds
+        fun bindsFormLocalDataSource(
+            formLocalDataSourceImpl: FormLocalDataSourceImpl
+        ): FormLocalDataSource
+
+
+        @Binds
+        fun bindFormMapper(
+            formMapper: FormDataLocalMapper
+        ): Mapper<FormData, FormLocal>
     }
 
     @Provides
@@ -45,4 +61,9 @@ class LocalPersistenceModule {
         listingsDB: ListingsDB
     ) = listingsDB.getListingsDao()
 
+    @Provides
+    @Singleton
+    fun providesFormDAO(
+        listingsDB: ListingsDB
+    ) = listingsDB.getFormDao()
 }

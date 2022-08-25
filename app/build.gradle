@@ -29,8 +29,6 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', base_url
-        it.buildConfigField 'String', 'BASE_URL_EXTRA', base_url_extra
-
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
