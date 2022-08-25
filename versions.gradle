@@ -15,6 +15,7 @@ ext {
     retrofit2Version = "2.9.0"
     rxJavaVersion = '2.2.21'
     rxAndroidVersion = "2.1.1"
+    navComponentVersion = "2.5.1"
 
     // Android UI
     appcompatVersion = '1.4.0'

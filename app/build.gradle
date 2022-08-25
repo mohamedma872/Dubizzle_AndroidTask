@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'androidx.navigation.safeargs'
+
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
 
@@ -27,6 +29,8 @@ android {
     }
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', base_url
+        it.buildConfigField 'String', 'BASE_URL_EXTRA', base_url_extra
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -48,12 +52,18 @@ dependencies {
     implementation project(':presentation')
     implementation 'androidx.core:core-ktx:1.7.0'
 
+    //Navigation Component
+    implementation "androidx.navigation:navigation-fragment-ktx:$navComponentVersion"
+    implementation "androidx.navigation:navigation-ui-ktx:$navComponentVersion"
+
+
     // Dagger dependency injection
     implementation "com.google.dagger:dagger:$daggerVersion"
     implementation "com.google.dagger:dagger-android:$daggerVersion"
     implementation "com.google.dagger:dagger-android-support:$daggerVersion"
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.preference:preference:1.1.1'
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 

@@ -6,4 +6,10 @@
     <string name="price">Price : </string>
     <string name="name">Name : </string>
     <string name="uid">UID : </string>
+
+    <!-- Form Fragment -->
+    <string name="item_api_form_title">Api Form</string>
+    <string name="hint_media_type">all, movie, tv, person</string>
+    <string name="hint_time_window">day, week</string>
+
 </resources>

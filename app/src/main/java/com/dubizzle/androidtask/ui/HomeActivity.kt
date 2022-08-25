@@ -2,6 +2,9 @@ package com.dubizzle.androidtask.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -64,6 +67,24 @@ class HomeActivity : AppCompatActivity(),
                 }
             }
         })
+    }
+    // inflating menu options
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.home_menu, menu)
+        return true
+    }
+
+    // Handle item selection
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.item_api_form -> {
+                startActivity(
+                    Intent(this, FormActivity::class.java))
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     /**
