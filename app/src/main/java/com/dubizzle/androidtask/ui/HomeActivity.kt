@@ -45,6 +45,7 @@ class HomeActivity : AppCompatActivity(),
 
         initAdapter()
         homeVM = ViewModelProvider(this, viewModelFactory)[HomeViewModel::class.java]
+
         homeVM.listingsResource.observe(this) {
             when (it.status) {
                 Status.LOADING -> {

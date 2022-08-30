@@ -12,6 +12,7 @@ import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
@@ -23,7 +24,6 @@ class LocalPersistenceModule {
     @Module
     @InstallIn(SingletonComponent::class)
     interface Binders {
-
         @Binds
         fun bindsLocalDataSource(
             localDataSourceImpl: LocalDataSourceImpl
@@ -35,15 +35,12 @@ class LocalPersistenceModule {
             listingsMapper: ListingsDataLocalMapper
         ): Mapper<ListingsData, ListingsLocal>
     }
-
     @Provides
     @Singleton
     //provide application context using hilt's @ApplicationContext
     fun providesDatabase(
         @ApplicationContext context: Context
     ) = ListingsDB.getInstance(context)
-
-
 
     @Provides
     @Singleton

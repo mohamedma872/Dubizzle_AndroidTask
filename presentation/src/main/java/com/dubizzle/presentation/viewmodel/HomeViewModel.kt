@@ -33,12 +33,18 @@ class HomeViewModel @Inject constructor(
         // it's basically build the UseCase
         .buildUseCase(GetListingsTask.Params( 20))
         // it map the data to an acceptable format using the injected mapper
-        .map { transactionEntities ->
+        .map {
+                transactionEntities ->
             transactionEntities.map {
+
+
                 listingsMapper.to(it)
             }
         // finally it creates a Resource object based on completion , loading and an error state that's represent the single state of home screen
-        }.map { Resource.success(it) }
+        }.map {
+
+
+                Resource.success(it) }
         .startWith(Resource.loading())
         .onErrorResumeNext(Function {
             Observable.just(

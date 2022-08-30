@@ -5,6 +5,3 @@ import dagger.hilt.android.HiltAndroidApp
 
 @HiltAndroidApp
 class ListingsApp: Application()
-
-
-
