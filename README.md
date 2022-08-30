@@ -26,6 +26,9 @@ Some of the features of the app include
 ![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%205.08.29%20AM.png)
 ![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-26%20at%205.37.39%20PM.png)
 ![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/master/Screen%20Shot%202021-12-27%20at%201.57.34%20PM.png)
+![alt text](https://github.com/mohamedma872/Dubizzle_AndroidTask/blob/hilt_integration/Dependency%20Graph.png)
+
+
 # Testing:
 To run all the unit tests, run `./gradlew test`. This would test the repositories and the viewmodels.
 
